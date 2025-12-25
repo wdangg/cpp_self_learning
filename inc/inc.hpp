@@ -2,7 +2,7 @@
 #define _INC_H_
 
 #include <iostream>
-#include "log.h"
-#include "student.h"
+#include "log.hpp"
+#include "student.hpp"
 
 #endif /* _INC_H_ */

@@ -576,26 +576,47 @@ LOAD /usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/crtn.o
 .debug_sfnames
  *(.debug_sfnames)
 
-.debug_aranges
+.debug_aranges  0x0000000000000000      0x1d0
  *(.debug_aranges)
+ .debug_aranges
+                0x0000000000000000       0xd0 build/objects/main.o
+ .debug_aranges
+                0x00000000000000d0       0x30 build/objects/log.o
+ .debug_aranges
+                0x0000000000000100       0xd0 build/objects/student.o
 
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info
+.debug_info     0x0000000000000000    0x106a8
  *(.debug_info .gnu.linkonce.wi.*)
+ .debug_info    0x0000000000000000     0x5a0a build/objects/main.o
+ .debug_info    0x0000000000005a0a     0x52a9 build/objects/log.o
+ .debug_info    0x000000000000acb3     0x59f5 build/objects/student.o
 
-.debug_abbrev
+.debug_abbrev   0x0000000000000000     0x19df
  *(.debug_abbrev)
+ .debug_abbrev  0x0000000000000000      0x942 build/objects/main.o
+ .debug_abbrev  0x0000000000000942      0x76f build/objects/log.o
+ .debug_abbrev  0x00000000000010b1      0x92e build/objects/student.o
 
-.debug_line
+.debug_line     0x0000000000000000      0x8b3
  *(.debug_line .debug_line.* .debug_line_end)
+ .debug_line    0x0000000000000000      0x391 build/objects/main.o
+ .debug_line    0x0000000000000391      0x19d build/objects/log.o
+ .debug_line    0x000000000000052e      0x385 build/objects/student.o
 
 .debug_frame
  *(.debug_frame)
 
-.debug_str
+.debug_str      0x0000000000000000     0x713d
  *(.debug_str)
+ .debug_str     0x0000000000000000     0x6e05 build/objects/main.o
+                                       0x7289 (size before relaxing)
+ .debug_str     0x0000000000006e05      0x318 build/objects/log.o
+                                       0x6cc5 (size before relaxing)
+ .debug_str     0x000000000000711d       0x20 build/objects/student.o
+                                       0x7290 (size before relaxing)
 
 .debug_loc
  *(.debug_loc)
@@ -625,7 +646,17 @@ LOAD /usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/crtn.o
  *(.debug_addr)
 
 .debug_line_str
+                0x0000000000000000      0x3c1
  *(.debug_line_str)
+ .debug_line_str
+                0x0000000000000000      0x38c build/objects/main.o
+                                        0x404 (size before relaxing)
+ .debug_line_str
+                0x000000000000038c       0x1a build/objects/log.o
+                                        0x3a5 (size before relaxing)
+ .debug_line_str
+                0x00000000000003a6       0x1b build/objects/student.o
+                                        0x404 (size before relaxing)
 
 .debug_loclists
  *(.debug_loclists)
@@ -637,7 +668,12 @@ LOAD /usr/lib/gcc/x86_64-linux-gnu/11/../../../x86_64-linux-gnu/crtn.o
  *(.debug_names)
 
 .debug_rnglists
+                0x0000000000000000       0xfc
  *(.debug_rnglists)
+ .debug_rnglists
+                0x0000000000000000       0x7e build/objects/main.o
+ .debug_rnglists
+                0x000000000000007e       0x7e build/objects/student.o
 
 .debug_str_offsets
  *(.debug_str_offsets)

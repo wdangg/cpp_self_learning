@@ -1,5 +1,5 @@
-#include "log.h"
 #include <iostream>
+#include "log.hpp"
 
 void LOG_INFO(const std::string& msg) 
 {

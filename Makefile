@@ -18,7 +18,7 @@ INC_DIR += $(PRO_DIR)/inc
 SRC_DIR += $(wildcard $(LIBS_DIR)/*)
 INC_DIR += $(wildcard $(LIBS_DIR)/*)
 
-CXXFLAGS := -std=c++17 -Wall -Wextra -Wpedantic $(foreach DIR, $(INC_DIR), -I$(DIR))
+CXXFLAGS := -std=c++17 -Wall -Wextra -g -Wpedantic $(foreach DIR, $(INC_DIR), -I$(DIR))
 MAP_FLAG := -Wl,-Map=$(BIN_DIR)/app.map
 
 SRC_FILES := $(foreach dir, $(SRC_DIR), $(wildcard $(dir)/*.cpp))
@@ -45,35 +45,40 @@ all: clear build run
 build: compile assemble link
 
 clear:
-	rm -rf $(BUILD_DIR)/*
+	@echo "[clear] Processing clear output"
+	@rm -rf $(BUILD_DIR)/*
 
 # 01. Preprocessing: .cpp -> .i
 preprocess: $(PREPROCESSED)
 
 $(PRE_DIR)/%.i: %.cpp
 	@mkdir -p $(dir $@)
-	$(CXX) $(CXXFLAGS) -E $< -o $@
+	@echo "[preprocessing] $< -> $@"
+	@$(CXX) $(CXXFLAGS) -E $< -o $@
 
 # Compiling: .i -> .s
 compile: preprocess $(COMPILED)
 
 $(ASM_DIR)/%.s: %.i
 	@mkdir -p $(dir $@)
-	$(CXX) $(CXXFLAGS) -S $< -o $@
+	@echo "[compiling] $^ -> $@"
+	@$(CXX) $(CXXFLAGS) -S $< -o $@
 
 # Assembling: .s -> .o
 assemble: preprocess compile $(ASSEMBLED)
 
 $(OBJ_DIR)/%.o: %.s
 	@mkdir -p $(dir $@)
-	$(CXX) $(CXXFLAGS) -c $< -o $@
+	@echo "[assembling] $< -> $@"
+	@$(CXX) $(CXXFLAGS) -c $< -o $@
 
 # Linking + file .map
 link: $(TARGET)
 
 $(TARGET): $(ASSEMBLED)
 	@mkdir -p $(BIN_DIR)
-	$(CXX) $(CXXFLAGS) $^ -o $(TARGET) $(MAP_FLAG)
+	@echo "[linking] $^ -> $@"
+	@$(CXX) $(CXXFLAGS) $^ -o $(TARGET) $(MAP_FLAG)
 
 run: 
 	@$(TARGET)

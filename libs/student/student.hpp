@@ -2,8 +2,7 @@
 #define _STUDENT_H_
 
 #include <iostream>
-#include "student.h"
-#include "log.h"
+#include "log.hpp"
 
 void studentInit();
 
